@@ -1,5 +1,5 @@
 const API_URL =
-  "https://script.google.com/macros/s/AKfycbwCshz8fdeA5lzHfHn2DoAnkZtsTHXA3tccTOjYzLizWcZsfruLK2vMC97UWGlxL5ar/exec";
+  "https://script.google.com/macros/s/AKfycby1osi0cO1IHX1HhmshsH31NY3LOzEz5R1ONot6PeWnaGSsLRV5-mt_UPMqTjshyRvf/exec";
 
 let dishesCache = [];
 let menu = [];
@@ -88,9 +88,9 @@ function renderDishBank() {
           div.draggable = true;
           div.dataset.idx = d._id; // use stable id
 
-          div.innerHTML = `<b>${d.title}</b><br><small>${d.ingredients.join(
-            ", "
-          )}</small>`;
+          div.innerHTML = `<b>${d.title}</b><br><small>${d.ingredients
+            .map((i) => i.name)
+            .join(", ")}</small>`;
 
           // Click → add to menu
           div.addEventListener("click", () => addToMenu(d));
@@ -177,25 +177,33 @@ function extractList() {
   const items = menu.flatMap((d) =>
     Array(d.quantity)
       .fill(null)
-      .flatMap(() => d.ingredients.map((i) => i.trim()))
+      .flatMap(() => d.ingredients)
   );
 
-  const counts = {};
-  items.forEach((i) => {
-    const key = i.toLowerCase();
-    counts[key] = (counts[key] || 0) + 1;
+  const grouped = {};
+  items.forEach(({ name, group }) => {
+    const key = name.toLowerCase();
+    if (!grouped[group]) grouped[group] = {};
+    grouped[group][key] = (grouped[group][key] || 0) + 1;
   });
 
-  const unique = Object.keys(counts)
-    .map((k) => {
-      const formatted = k.charAt(0).toUpperCase() + k.slice(1);
-      return counts[k] > 1 ? `${formatted} (${counts[k]})` : formatted;
-    })
-    .sort((a, b) => a.localeCompare(b));
+  // Build output grouped by type
+  let output = "";
+  Object.keys(grouped)
+    .sort()
+    .forEach((grp) => {
+      output += `\n${grp}\n`;
+      Object.keys(grouped[grp])
+        .sort()
+        .forEach((name) => {
+          const count = grouped[grp][name];
+          const formatted = name.charAt(0).toUpperCase() + name.slice(1);
+          output += `- ${formatted}${count > 1 ? " (" + count + ")" : ""}\n`;
+        });
+    });
 
-  const list = unique.join("\n");
-  navigator.clipboard.writeText(list);
-  alert("Grocery list copied:\n\n" + list);
+  navigator.clipboard.writeText(output.trim());
+  alert("Grocery list copied:\n\n" + output);
 }
 
 // === Collapsible headers ===
