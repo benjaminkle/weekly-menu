@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Family Weekly Menu</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Family Weekly Menu</h1>
+    <div class="container">
+      <!-- Column 1 -->
+      <div class="column">
+        <h2>Add Dish</h2>
+        <input type="text" id="title" placeholder="Dish Title" />
+        <textarea
+          id="ingredients"
+          placeholder="Ingredients (comma separated)"
+        ></textarea>
+        <button id="saveBtn" class="btn-green">Save Dish</button>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="column">
+        <h2>Dish Bank</h2>
+        <div id="dishBank"></div>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="column">
+        <h2>Weekly Menu</h2>
+        <div id="weeklyMenu"></div>
+        <button id="extractBtn" class="btn-blue">Extract Grocery List</button>
+      </div>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
