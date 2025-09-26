@@ -14,7 +14,6 @@ body {
   line-height: 1.5;
 }
 
-/* Headings */
 h1 {
   text-align: center;
   font-size: 2rem;
@@ -26,7 +25,6 @@ h1 {
 h2 {
   font-size: 1.25rem;
   font-weight: 600;
-  margin-bottom: 12px;
   color: #374151;
 }
 
@@ -49,48 +47,65 @@ h2 {
   padding: 20px;
   border-radius: 0.75rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
 }
 
-.column:hover {
-  transform: translateY(-2px);
-}
-
-/* Cards */
+/* Dish cards */
 .card {
   border: 1px solid #e5e7eb;
-  padding: 12px;
-  margin-bottom: 12px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
   border-radius: 0.5rem;
   background: #f9fafb;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.card:hover {
-  background: #f3f4f6;
-  transform: translateY(-1px);
+.card small {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.8rem;
+  color: #6b7280;
 }
 
+/* Hover effect for Dish Bank */
+#main-list .card:hover,
+#side-list .card:hover,
+#snacks-list .card:hover {
+  background: #10b981;
+  color: white;
+}
+
+#main-list .card:hover small,
+#side-list .card:hover small,
+#snacks-list .card:hover small {
+  color: #d1fae5;
+}
+
+/* Weekly menu cards */
 .weekly-card {
   background: #fef3c7;
   border-color: #fcd34d;
+  margin-bottom: 8px;
+  padding: 8px 10px;
 }
 
-/* Inputs & Textareas */
+/* Inputs */
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   margin-bottom: 12px;
   padding: 10px;
   border: 1px solid #d1d5db;
   border-radius: 0.5rem;
   font-size: 0.95rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    sans-serif;
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   outline: none;
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
@@ -98,10 +113,9 @@ textarea:focus {
 
 /* Buttons */
 button {
-  padding: 10px 16px;
   border: none;
   border-radius: 0.5rem;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
@@ -114,6 +128,7 @@ button:hover {
 .btn-green {
   background: #10b981;
   color: white;
+  padding: 8px 14px;
 }
 
 .btn-green:hover {
@@ -123,8 +138,136 @@ button:hover {
 .btn-blue {
   background: #3b82f6;
   color: white;
+  padding: 8px 14px;
 }
 
 .btn-blue:hover {
   background: #2563eb;
+}
+
+.btn-red {
+  background: #ef4444;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  margin-left: 10px;
+}
+
+.btn-red:hover {
+  background: #dc2626;
+}
+
+/* Drop zone */
+.drop-zone {
+  min-height: 150px;
+  border: 2px dashed #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 10px;
+  transition: background 0.2s ease;
+}
+
+/* Collapsible sections */
+.section {
+  margin-bottom: 10px;
+}
+
+.section-header {
+  font-weight: 600;
+  padding: 6px 10px;
+  background: #e5e7eb;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-bottom: 6px;
+  transition: background 0.2s;
+}
+
+.section-header:hover {
+  background: #10b981;
+  color: white;
+}
+
+.section-list {
+  margin-left: 10px;
+}
+
+#searchBox {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+}
+
+#searchBox:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+}
+
+/* Layout for weekly menu row */
+.weekly-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+}
+
+/* Title stays left, controls on right */
+.weekly-card b {
+  flex: 1;
+}
+
+/* Controls row */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Bigger +/- buttons */
+.btn-qty {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 6px 12px; /* bigger */
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.btn-qty:hover {
+  background: #45a049;
+}
+
+/* Remove button consistent size */
+.btn-red {
+  margin-left: 8px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.btn-red:hover {
+  background: #c0392b;
+}
+
+.footer {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #f8f8f8; /* light gray */
+  color: #555; /* softer text */
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  z-index: 1000;
 }
