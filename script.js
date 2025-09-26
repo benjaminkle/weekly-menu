@@ -68,7 +68,7 @@ function renderDishBank() {
       document.getElementById("searchBox")?.value || ""
     ).toLowerCase();
 
-    ["main", "side", "snacks"].forEach((cat) => {
+    ["main", "side", "others"].forEach((cat) => {
       const listDiv = document.getElementById(`${cat}-list`);
       if (!listDiv) return;
 

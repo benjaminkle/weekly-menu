@@ -70,14 +70,14 @@ h2 {
 /* Hover effect for Dish Bank */
 #main-list .card:hover,
 #side-list .card:hover,
-#snacks-list .card:hover {
+#others-list .card:hover {
   background: #10b981;
   color: white;
 }
 
 #main-list .card:hover small,
 #side-list .card:hover small,
-#snacks-list .card:hover small {
+#others-list .card:hover small {
   color: #d1fae5;
 }
 
